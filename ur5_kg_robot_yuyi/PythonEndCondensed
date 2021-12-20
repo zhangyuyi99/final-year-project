@@ -1,0 +1,15 @@
+import time
+import serial
+import math
+from math import pi
+import numpy
+import socket
+import sys
+import kg_robot as kgr
+
+burt = kgr.kg_robot(port=29999,db_host="169.254.88.50")
+
+#burt.translatel_rel([0, 0, 0.001, 0, 0, 0])
+
+burt.close()
+
