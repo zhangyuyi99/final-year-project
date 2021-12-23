@@ -81,22 +81,37 @@ class kg_robot():
     #                                                                      Communications
     #
     #-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    # def socket_send(self, prog):
+    #     """low level socket communications with the robot"""
+    #     msg = "No message from robot"
+    #     try:
+    #         # Send formatted CMD
+    #         self.c.send(str.encode(prog))
+    #         # Wait for reply
+    #         if prog[-3]=='0':
+    #             msg=bytes.decode(self.c.recv(1024))
+    #             if msg=="No message from robot" or msg=='':
+    #                 print(".......................Robot disconnected :O.......................")
+    #                 input("press enter to continue")
+    #
+    #     except socket.error as socketerror:
+    #         print(".......................Some kind of error :(.......................")
+    #         input("press enter to continue")
+    #         raise socket.error
+    #     return msg
+
     def socket_send(self, prog):
         """low level socket communications with the robot"""
         msg = "No message from robot"
-        try:
-            # Send formatted CMD
-            self.c.send(str.encode(prog))
-            # Wait for reply
-            if prog[-3]=='0':
-                msg=bytes.decode(self.c.recv(1024))
-                if msg=="No message from robot" or msg=='':
-                    print(".......................Robot disconnected :O.......................")
-                    input("press enter to continue")
+        # Send formatted CMD
+        self.c.send(str.encode(prog))
+        # Wait for reply
+        if prog[-3] == '0':
+            msg = bytes.decode(self.c.recv(1024))
+            if msg == "No message from robot" or msg == '':
+                print(".......................Robot disconnected :O.......................")
+                input("press enter to continue")
 
-        except socket.error as socketerror:
-            print(".......................Some kind of error :(.......................")
-            input("press enter to continue")
         return msg
 
     def format_prog(self,CMD,pose=[0,0,0,0,0,0],acc=0.1,vel=0.1,t=0,r=0,w=True):

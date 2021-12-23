@@ -19,21 +19,21 @@ import pygame.midi
 
 # set the finger at central C, at the height of piano key and the wrist flat before running
 
-def press(down_vel,up_vel,distance,hold_time,acc,press_depth):
-
-    ready_position_l = start_position_l[:]
-    ready_position_l[2]+=distance
-    burt.movel(ready_position_l)
-    time.sleep(0.5)
-    # burt.movej(start_position_j)
-    ready_position_j = burt.getj()
-
-    burt.translatel_rel([0, 0, -distance-press_depth, 0, 0, 0], acc=acc, vel = down_vel)
-    time.sleep(hold_time)
-    burt.translatel_rel([0, 0, distance+press_depth, 0, 0, 0], acc=acc, vel = up_vel)
-    time.sleep(0.5)
-
-    return ready_position_l,ready_position_j
+# def press(down_vel,up_vel,distance,hold_time,acc,press_depth):
+#
+#     ready_position_l = start_position_l[:]
+#     ready_position_l[2]+=distance
+#     burt.movel(ready_position_l)
+#     time.sleep(0.5)
+#     # burt.movej(start_position_j)
+#     ready_position_j = burt.getj()
+#
+#     burt.translatel_rel([0, 0, -distance-press_depth, 0, 0, 0], acc=acc, vel = down_vel)
+#     time.sleep(hold_time)
+#     burt.translatel_rel([0, 0, distance+press_depth, 0, 0, 0], acc=acc, vel = up_vel)
+#     time.sleep(0.5)
+#
+#     return ready_position_l,ready_position_j
 
 tstart = time.time()
 # burt = kgr.kg_robot(port=30010, db_host="169.254.1.1")
