@@ -53,7 +53,7 @@ hidden_dim = 64
 layer_dim = 3
 batch_size = 1
 dropout = 0.0
-n_epochs = 100
+n_epochs = 50
 learning_rate = 1e-3
 weight_decay = 1e-6
 

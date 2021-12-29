@@ -32,7 +32,9 @@ class Optimization:
         return loss.item()
 
     def train(self, train_loader, val_loader, batch_size=64, n_epochs=50, n_features=1):
-        model_path = f'models/{self.model}_{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
+        # model_path = f'models/{self.model}_{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
+        model_path = f'models/lstm_{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
+        model_path = f'models/lstm_{datetime.now().strftime("%Y_%m_%d %H_%M_%S")}'
 
         for epoch in range(1, n_epochs + 1):
             batch_losses = []
