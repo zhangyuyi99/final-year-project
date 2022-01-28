@@ -15,6 +15,12 @@ def readInput(input_device):
             event = input_device.read(1)
             print(event)
 
+def readInputSeq(input_device):
+    while True:
+        if input_device.poll():
+            event = input_device.read(1)
+            print(event)
+
 
 if __name__ == '__main__':
     pygame.midi.init()

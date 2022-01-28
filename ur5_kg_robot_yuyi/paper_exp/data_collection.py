@@ -3,20 +3,22 @@
 
 import time
 import numpy as np
-import ur5_kg_robot_yuyi.kg_robot as kgr
+import kg_robot as kgr
 import pygame.midi
 
-vel_list = np.linspace(0.001,0.008,15)
+vel_list = np.linspace(0.01,0.08,15)
 acc_list = np.array([0.1,0.5,1.0])
+# acc_list = 0.1
 distance = 0.05
-depth_list = np.array([0.002,0.003,0.004])
+depth_list = np.array([0.02,0.03,0.04])
+# depth_list = 0.02
 hold_time = 0
 # stiffness [0,-20,-40,-60,-80] kPa
 # data points: 5*20*3*3*3 = 2700 in total
 
 # manual:
-stiffness = 0
-angle = 0
+stiffness = 80
+angle = 70
 
 
 def press(vel,distance,hold_time,press_depth,acc):
@@ -35,7 +37,7 @@ def press(vel,distance,hold_time,press_depth,acc):
 
 
 tstart = time.time()
-burt = kgr.kg_robot(port=30010, db_host="169.254.1.1")
+burt = kgr.kg_robot(port=30010, db_host="169.254.243.20")
 
 start_position_l = burt.getl()
 print(start_position_l)
@@ -45,13 +47,9 @@ key_height = start_position_l[2]
 pygame.midi.init()
 device = pygame.midi.Input(1)
 
-with open('paper_data/soft_0_angle_0.txt', 'a') as f:
+filename = 'paper_data/soft_'+str(stiffness)+'_angle_'+str(angle)+'.txt'
 
-    # vel_list = np.linspace(0.001, 0.008, 15)
-    # acc_list = np.array([0.1, 0.5, 1.0])
-    # distance = 0.05
-    # press_depth = np.array([0.002, 0.003, 0.004])
-    # hold_time = 0
+with open(filename, 'a') as f:
 
     for acc in acc_list:
         for vel in vel_list:

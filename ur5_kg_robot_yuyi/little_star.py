@@ -16,7 +16,7 @@ def read_play_file(filename):
     print(up_vel_list)
 
     note_list = np.array(mat['note_list'])[0]
-    note_list = [3,2,1,2,3,3,3,2,2,2,3,5,5]
+    note_list = [1,1,5,5,6,6,5,4,4,3,3,2,2,1]
     print(note_list)
 
     hold_time_list = np.array(mat['hold_time_list'])[0]
@@ -30,9 +30,9 @@ def read_play_file(filename):
     # up_time_list = 0.001 * up_time_list / 0.704
     print(up_time_list)
 
-    wait_time_list = np.zeros(13)
+    wait_time_list = np.zeros(14)
 
-    for i in range(12):
+    for i in range(13):
         wait_time_list[i] = down_time_list[i+1]-up_time_list[i]
 
     play_data = {'note_list':note_list, 'down_vel_list':down_vel_list, 'up_vel_list':up_vel_list, 'note_list':note_list, 'hold_time_list':hold_time_list, 'wait_time_list':wait_time_list}
@@ -95,8 +95,9 @@ def read_play_list(list):
 # down_time_list
 # up_time_list
 
-def press(start_position_l, note,down_vel,up_vel,hold_time=0.5,acc=0.5, wait_time = 1, iflast=False):
-    distance = down_vel**2/(2*acc)+0.05
+def press(start_position_l, note,down_vel,up_vel,hold_time=0,acc=0.5, wait_time = 1, iflast=False):
+    # distance = down_vel**2/(2*acc)+0.08
+    distance = 0.01
     ready_position_l = start_position_l[:]
     ready_position_l[1] += (note - 1) * key_width
     ready_position_l[2]+=distance
@@ -105,11 +106,11 @@ def press(start_position_l, note,down_vel,up_vel,hold_time=0.5,acc=0.5, wait_tim
     # burt.movej(start_position_j)
     ready_position_j = burt.getj()
 
-    burt.translatel_rel([0, 0, -distance-0.015, 0, 0, 0], acc=acc, vel=down_vel)
+    burt.translatel_rel([0, 0, -distance-0.007, 0, 0, 0], acc=acc, vel=down_vel)
     time.sleep(hold_time)
 
-    if iflast:
-        burt.translatel_rel([0, 0, 0.015, 0, 0, 0], acc=acc, vel=up_vel)
+    if iflast or note==1:
+        burt.translatel_rel([0, 0, 0.007, 0, 0, 0], acc=acc, vel=up_vel)
 
 def play(start_position_l, play_data):
 
@@ -125,7 +126,7 @@ def play(start_position_l, play_data):
             # # # ready_position[2] += distance
             # burt.movel(ready_position)
             iflast = (i==len(play_data['note_list'])-1)
-            press(start_position_l = start_position_l, note = note, down_vel=down_vel,up_vel=up_vel,hold_time=hold_time, acc=3, wait_time= wait_time, iflast=iflast)
+            press(start_position_l = start_position_l, note = note, down_vel=down_vel,up_vel=up_vel,hold_time=hold_time, acc=5, wait_time= wait_time, iflast=iflast)
         elif note==0:
             time.sleep(2)
 
@@ -145,7 +146,7 @@ burt.movej(start_position_j)
 burt.movel(start_position_l)
 time.sleep(6)
 start_position_l = burt.getl()
-play_data = read_play_file('play_data/new_marie_lamb.mat')
+play_data = read_play_file('play_data/little_star.mat')
 # play_data = read_play_list(midi)
 print(play_data)
 play(start_position_l, play_data)

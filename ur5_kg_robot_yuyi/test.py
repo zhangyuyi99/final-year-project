@@ -66,11 +66,14 @@ def play(start_position ,notes, style, speed=1):
             time.sleep(2)
 
 
-
+start_position_l = [-0.602168, -0.0656458, 0.121373, 2.15931, -2.27794, 0.0549882]
+start_position_j = [-0.119586, -1.25544, 2.04127, -2.33096, -1.54294, 3.07975]
 
 tstart = time.time()
-burt = kgr.kg_robot(port=30010, db_host="169.254.1.1")
-# burt.movel(onkey_press_ready)
+# burt = kgr.kg_robot(port=30010, db_host="169.254.1.1")
+burt = kgr.kg_robot(port=30010, db_host="169.254.243.20")
+burt.movej(start_position_j)
+burt.movel(start_position_l)
 start_position = burt.getl()
 print(start_position)
 key_height = start_position[2]
@@ -88,11 +91,57 @@ key_height = start_position[2]
 #     time.sleep(0)
 #     # midi format: [[status, note, velocity, 0], timestamp]
 #     # status: 144-on, 128-off
-#     event = device.read(2)
-#     print(event)
+#     # event = device.read(2)
+#     # print(event)
+
+# showing varying down vel
+# a = Style("a", distance=0.05, down_vel=0.2, down_acc=2, up_vel=0.02,hold_time=0.5)
+# b = Style("b", distance=0.05, down_vel=0.15, down_acc=2, up_vel=0.02,hold_time=0.5)
+# # c = Style("c", distance=0.05, down_vel=0.1, down_acc=2, up_vel=0.02,hold_time=0.5)
+# # d = Style("d", distance=0.05, down_vel=0.08, down_acc=2, up_vel=0.02,hold_time=0.5)
+# e = Style("e", distance=0.05, down_vel=0.05, down_acc=2, up_vel=0.02,hold_time=0.5)
+
+# style_list = [a,b,e]
+# for style in style_list:
+#     ready_position = start_position[:]
+#     ready_position[2]+=style.distance
+#     burt.movel(ready_position)
+#     press(style)
+#     time.sleep(0)
+
+import numpy as np
+ # showing varying tempo
+# bump1 = Style("bump", distance=0.00, down_vel=2, up_vel=2, hold_time=0)
+# bump2 = Style("bump", distance=0.00, down_vel=2, up_vel=2, hold_time=0.2)
+# bump3 = Style("bump", distance=0.00, down_vel=2, up_vel=2, hold_time=0.4)
 #
-# burt.movel(start_position)
-# print(burt.getl())
+# style_list = [bump1, bump2, bump3]
+#
+# for style in style_list:
+#     time.sleep(2)
+#     for j in range(3):
+#         ready_position = start_position[:]
+#         ready_position[2] += style.distance
+#         burt.movel(ready_position)
+#         press(style)
+#         time.sleep(0)
+
+# for i in np.linspace(0,0.9,4):
+#     time.sleep(2)
+#     for j in range(3):
+#         ready_position = start_position[:]
+#         ready_position[2] += style.distance
+#         burt.movel(ready_position)
+#         press(style)
+#         time.sleep(i)
+
+    # midi format: [[status, note, velocity, 0], timestamp]
+    # status: 144-on, 128-off
+    # event = device.read(2)
+    # print(event)
+
+burt.movel(start_position)
+print(burt.getl())
 
 # music demo playing
 # music = [3,2,1,2,3,3,3,0,2,2,2,0,3,3,3,0,3,2,1,2,3,3,3,0,2,2,3,2,1]
@@ -133,8 +182,8 @@ angel_90_l = [-0.562234, -0.129058, 0.196366, -2.00268, 1.69174, -0.784557]
 angel_90_j = [-0.036846, -1.32076, 1.63276, -1.17739, -1.53747, 2.92534]
 
 
-burt.movel(angel_90_l)
-burt.movej(angel_90_j)
+# burt.movel(angel_90_l)
+# burt.movej(angel_90_j)
 
 #
 one_step_l = [(i - j)/3 for i, j in zip(angel_90_l, angel_0_l)]
