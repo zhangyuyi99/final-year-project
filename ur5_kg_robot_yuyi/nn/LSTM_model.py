@@ -17,6 +17,8 @@ class LSTMModel(nn.Module):
         # Fully connected layer
         self.fc = nn.Linear(hidden_dim, output_dim)
 
+        # self.data =  nn.DataParallel()
+
     def forward(self, x):
         # Initializing hidden state for first input with zeros
         h0 = torch.zeros(self.layer_dim, x.size(0), self.hidden_dim).requires_grad_()
@@ -31,7 +33,8 @@ class LSTMModel(nn.Module):
 
         # Reshaping the outputs in the shape of (batch_size, seq_length, hidden_size)
         # so that it can fit into the fully connected layer
-        out = out[:, -1, :]
+        # out = out[:, -1, :]
+        # print(out.size())
 
         # Convert the final state to our desired output shape (batch_size, output_dim)
         out = self.fc(out)

@@ -33,8 +33,8 @@ class Optimization:
 
     def train(self, train_loader, val_loader, batch_size=64, n_epochs=50, n_features=1):
         # model_path = f'models/{self.model}_{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
-        model_path = f'models/lstm_{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
-        model_path = f'models/lstm_{datetime.now().strftime("%Y_%m_%d %H_%M_%S")}'
+        # model_path = f'models/lstm_{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
+        model_path = f'C:/Users/46596/PycharmProjects/final-year-project/ur5_kg_robot_yuyi/nn_model/models/lstm_{datetime.now().strftime("%Y_%m_%d %H_%M_%S")}'
 
         for epoch in range(1, n_epochs + 1):
             batch_losses = []

@@ -1,6 +1,7 @@
 from ur5_kg_robot_yuyi.nn.get_model import *
 import torch
 import numpy as np
+import torch.nn as nn
 
 midi = [[[[144, 64, 30, 0], 32616], [[128, 64, 59, 0], 32735]],
         [[[144, 62, 31, 0], 32724], [[128, 62, 61, 0], 32839]],
@@ -55,8 +56,8 @@ model_params = {'input_dim': input_dim,
                 'dropout_prob' : dropout}
 
 model = get_model('lstm', model_params)
-
-model.load_state_dict(torch.load('C:/Users/46596/PycharmProjects/final-year-project/ur5_kg_robot_yuyi/nn_model/models/lstm_2021_12_29 22_25_19'))
+# model = nn.DataParallel(model)
+model.load_state_dict(torch.load('C:/Users/46596/PycharmProjects/final-year-project/ur5_kg_robot_yuyi/nn_model/models/lstm_2022_01_17 12_54_50'))
 
 pred_ctrl = model(midi)
 

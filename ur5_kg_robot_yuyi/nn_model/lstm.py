@@ -27,7 +27,7 @@ val_data = data[80:100]
 
 # {'group': 0, 'order': 11, 'note', 'move_vel', 'down_vel', 'up_vel', 'distance', 'hold_time', 'move_acc', 'down_acc', 'up_acc', 'press_depth', 'midi': [[[144, 69, 54, 0], 28854], [[128, 69, 86, 0], 29480]]}
 input_dim = 5 # 'midi': [[[144, 69, 54, 0], 28854], [[128, 69, 86, 0], 29480]] --> [69, 28854, 86, 29480] = [down_vel, down_time, up_vel, up_time]
-hidden_dim = 10 # 'note', 'move_vel', 'down_vel', 'up_vel', 'distance', 'hold_time', 'move_acc', 'down_acc', 'up_acc', 'press_depth'
+hidden_dim = 2 # 'note', 'move_vel', 'down_vel', 'up_vel', 'distance', 'hold_time', 'move_acc', 'down_acc', 'up_acc', 'press_depth'
 n_layers = 1
 
 # lstm_layer = nn.LSTM(input_dim, hidden_dim, n_layers, batch_first=True)
@@ -49,12 +49,12 @@ n_layers = 1
 
 input_dim = 5
 output_dim = 10
-hidden_dim = 64
-layer_dim = 3
-batch_size = 1
+hidden_dim = 24
+layer_dim = 2
+batch_size = 10
 dropout = 0.0
-n_epochs = 50
-learning_rate = 1e-3
+n_epochs = 100
+learning_rate = 0.001
 weight_decay = 1e-6
 
 model_params = {'input_dim': input_dim,
