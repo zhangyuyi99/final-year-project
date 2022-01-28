@@ -1,10 +1,10 @@
 # How to build a particle jammed soft finger
 
-Many thing can go wrong we you are trying to make a particle jammed soft finger. Here is a manual with procedures together with some tips!
+Many thing can go wrong we you are trying to make a particle jammed soft finger. Here is a manual with procedures and some tips!
 
 ## 1. 3D print the skeleton
 
-## 2. 3D print a mold 
+## 2. 3D print the mold 
 
 ## 3. Build silica gel shell 
 
