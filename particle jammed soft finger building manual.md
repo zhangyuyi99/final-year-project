@@ -1,6 +1,6 @@
 # How to build a particle jammed soft finger
 
-Many thing can go wrong we you are trying to make a particle jammed soft finger. Here is a manual with procedures and some tips!
+Many things can go wrong we you are trying to make a particle jammed soft finger. Here is a manual with procedures and some tips!
 
 ## 1. 3D print the skeleton
 3D print the skeleton from the CAD model. Leave some holes on skeleton for inserting the tubes. Be aware that depending on the printer you use, there might be hollow structures in the finger which will cause problems for airtightness later. 
